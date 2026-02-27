@@ -1,10 +1,12 @@
 using System.Text.RegularExpressions;
+
 internal class Card : IComparable<Card>
 {
     public string Suit { get; init; }
     public string Face { get; init; }
 
-    public int NumValue {
+    public int NumValue
+    {
         get
         {
             return Face switch
@@ -22,7 +24,7 @@ internal class Card : IComparable<Card>
                 "Q" => 12,
                 "K" => 13,
                 "A" => 14,
-                _ => throw new ArgumentException($"Invalid card face: {Face}")
+                _ => throw new ArgumentException($"Invalid card face: {Face}"),
             };
         }
     }
@@ -30,7 +32,8 @@ internal class Card : IComparable<Card>
     public Card(string card)
     {
         var match = Regex.Match(card.Trim(), @"^(10|[2-9JQKA])([HDCS])$");
-        if (!match.Success){
+        if (!match.Success)
+        {
             throw new ArgumentException($"Invalid card format: {card}");
         }
         var face = match.Groups[1].Value;
@@ -48,5 +51,4 @@ internal class Card : IComparable<Card>
     {
         return $"{Face}{Suit}";
     }
-
 }

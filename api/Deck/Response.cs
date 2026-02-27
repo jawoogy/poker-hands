@@ -1,5 +1,3 @@
-
-
 internal class Response
 {
     public string Winner { get; init; } = string.Empty;
